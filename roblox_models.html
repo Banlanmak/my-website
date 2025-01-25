@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Modelleri ve Sohbet</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #2b2b3d;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 70%;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #f2f2f2;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .chat, .announcement {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .chat {
+            text-align: left;
+            width: 100%;
+        }
+
+        .announcement {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .announcement input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            background-color: #444;
+            color: white;
+            border: 1px solid #333;
+        }
+
+        .announcement button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .announcement button:hover {
+            background-color: #45a049;
+        }
+
+        .chat textarea {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            background-color: #444;
+            color: white;
+            border: 1px solid #333;
+        }
+
+        .chat button {
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .chat button:hover {
+            background-color: #45a049;
+        }
+
+        .message-container {
+            background-color: #333;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: scroll;
+            text-align: left;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #444;
+            border-radius: 8px;
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .message .username {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .announcement-container {
+            background-color: #444;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .announcement-container p {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Roblox Modelleri ve Sohbet</h1>
+        
+        <!-- Duyuru Alanı -->
+        <div class="announcement">
+            <input type="text" id="announcementText" placeholder="Duyuru Yazın...">
+            <button onclick="postAnnouncement()">Duyuru Gönder</button>
+            <div class="announcement-container" id="announcementResult"></div>
+        </div>
+
+        <!-- Sohbet Alanı -->
+        <div class="chat">
+            <textarea id="chatMessage" placeholder="Mesajınızı yazın..."></textarea>
+            <button onclick="sendMessage()">Mesaj Gönder</button>
+            <div class="message-container" id="messages"></div>
+        </div>
+    </div>
+
+    <script>
+        const username = localStorage.getItem('username'); // Giriş yapan kullanıcının ismi
+
+        function sendMessage() {
+            const message = document.getElementById('chatMessage').value;
+            if (message) {
+                const messageContainer = document.getElementById('messages');
+                const newMessage = document.createElement('div');
+                newMessage.classList.add('message');
+                newMessage.innerHTML = `<span class="username">${username}:</span> ${message}`;
+                messageContainer.appendChild(newMessage);
+                document.getElementById('chatMessage').value = ''; // Mesaj kutusunu temizle
+                messageContainer.scrollTop = messageContainer.scrollHeight; // En son mesaja kaydır
+            }
+        }
+
+        function postAnnouncement() {
+            const announcementText = document.getElementById('announcementText').value;
+            if (announcementText) {
+                const announcementContainer = document.getElementById('announcementResult');
+                const newAnnouncement = document.createElement('div');
+                newAnnouncement.classList.add('announcement-container');
+                newAnnouncement.innerHTML = `<p>Duyuru: ${announcementText}</p>`;
+                announcementContainer.appendChild(newAnnouncement);
+                document.getElementById('announcementText').value = ''; // Duyuru kutusunu temizle
+            }
+        }
+    </script>
+</body>
+</html>
