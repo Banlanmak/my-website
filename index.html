@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSK Sayfası</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1c1c1c;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .container h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            opacity: 1;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .container p {
+            font-size: 1.6em;
+            line-height: 1.5;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1.5s ease-out 0.5s;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            border: none;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hakkında sayfası */
+        .about-page {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .about-page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        @keyframes slideInFromTop {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .about-page h2 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .about-page p {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-page button {
+            font-size: 1.2em;
+            padding: 12px 30px;
+            margin-top: 30px;
+            background-color: #555;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-page button:hover {
+            background-color: #666;
+            transform: scale(1.1);
+        }
+
+        /* Roblox ve Discord bağlantı sayfası */
+        .links-page {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .links-page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        .links-page h2 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .links-page p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+
+        .links-page a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            background-color: #444;
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .links-page a:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+
+        /* Anasayfaya dönme animasyonu */
+        .container.active {
+            animation: fadeOut 1s ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TSK'ya Hoşgeldiniz</h1>
+        <p>Türk Silahlı Kuvvetleri'ni keşfetmeye hazır mısınız?</p>
+        <div class="buttons">
+            <button onclick="goToLinks()">Devam Et</button>
+            <button onclick="goToAbout()">Hakkında</button>
+        </div>
+    </div>
+
+    <!-- Hakkında sayfası -->
+    <div class="about-page" id="aboutPage">
+        <h2>Türk Silahlı Kuvvetleri (TSK)</h2>
+        <p>Türk Silahlı Kuvvetleri, Türkiye'nin güvenliğini sağlamak, iç ve dış tehditlere karşı koruma görevini üstlenen, kara, hava ve deniz kuvvetlerinden oluşan bir askeri organizasyondur.</p>
+        <p>Kurucu: Kemalist</p>
+        <p>TSK, ülkemizin savunmasını sağlayarak, barışı koruma ve tehditlere karşı aktif rol oynar. Ülkemizin güvenliği ve dünya barışına katkı sağlamak, Türk Silahlı Kuvvetleri'nin temel misyonlarından biridir.</p>
+        <button onclick="goBack()">Geri</button>
+    </div>
+
+    <!-- Roblox ve Discord bağlantı sayfası -->
+    <div class="links-page" id="linksPage">
+        <h2>Bağlantılar</h2>
+        <p>Türk Silahlı Kuvvetleri'nin sosyal medya bağlantıları:</p>
+        <a href="https://www.roblox.com/communities/15161613/TMS-Turkish-Armed-Forces#!/about" target="_blank">Roblox Grubu</a>
+        <a href="https://discord.gg/YgzDcXUAwZ" target="_blank">Discord Sunucusu</a>
+        <button onclick="goBackToHome()">Ana Sayfaya Dön</button>
+    </div>
+
+    <script>
+        function goToAbout() {
+            document.getElementById('aboutPage').classList.add('active');
+            document.querySelector('.container').classList.add('active');
+        }
+
+        function goBack() {
+            document.getElementById('aboutPage').classList.remove('active');
+            document.querySelector('.container').classList.remove('active');
+        }
+
+        function goToLinks() {
+            document.getElementById('linksPage').classList.add('active');
+            document.querySelector('.container').classList.add('active');
+        }
+
+        function goBackToHome() {
+            document.getElementById('linksPage').classList.remove('active');
+            document.querySelector('.container').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
