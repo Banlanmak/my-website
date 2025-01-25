@@ -3,277 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banlanmak'ın Sitesi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Giriş ve Kayıt Ekranı</title>
     <style>
+        /* Genel stil */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1c1c1c;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f; /* Arka plan koyu */
             color: white;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            transition: background-color 0.5s ease;
         }
 
         .container {
+            background-color: #2b2b3d;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
             text-align: center;
-            z-index: 1;
+            width: 350px;
         }
 
         .container h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            opacity: 1;
-            animation: fadeIn 2s ease-out;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #f2f2f2;
         }
 
-        .container p {
-            font-size: 1.6em;
-            line-height: 1.5;
-            margin-top: 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 1.5s ease-out 0.5s;
-        }
-
-        .buttons {
+        .buttons,
+        form {
             margin-top: 20px;
         }
 
         button {
             margin: 10px;
-            padding: 12px 25px;
-            font-size: 1.2em;
+            padding: 10px 20px;
+            font-size: 1em;
             border: none;
-            background-color: #444;
+            background-color: #4CAF50; /* Yeşil buton */
             color: white;
             cursor: pointer;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #555;
-            transform: scale(1.1);
+            background-color: #45a049;
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hakkında sayfası */
-        .about-page {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #1c1c1c;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .about-page.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            animation: slideInFromTop 1s ease-out;
-        }
-
-        @keyframes slideInFromTop {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .about-page h2 {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .about-page p {
-            font-size: 1.4em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about-page button {
-            font-size: 1.2em;
-            padding: 12px 30px;
-            margin-top: 30px;
-            background-color: #555;
-            color: white;
+        input[type="text"],
+        input[type="password"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: calc(100% - 20px);
+            border: none;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            outline: none;
         }
 
-        .about-page button:hover {
+        .back-button {
+            background-color: #555;
+        }
+
+        .back-button:hover {
             background-color: #666;
-            transform: scale(1.1);
         }
 
-        /* Linkler sayfası */
-        .links-page {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #1c1c1c;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .links-page.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            animation: slideInFromTop 1s ease-out;
-        }
-
-        .links-page h2 {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .links-page p {
-            font-size: 1.4em;
-            margin-bottom: 20px;
-        }
-
-        .links-page a {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 25px;
-            background-color: #444;
-            color: white;
-            font-size: 1.2em;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .links-page a:hover {
-            background-color: #555;
-            transform: scale(1.1);
-        }
-
-        /* Anasayfaya dönme animasyonu */
-        .container.active {
-            animation: fadeOut 1s ease-out;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Banlanmak'ın Sitesi</h1>
-        <p>Banlanmak tarafından oluşturuldu</p>
+    <div class="container" id="mainContainer">
+        <h1>Hoş Geldiniz</h1>
         <div class="buttons">
-            <button onclick="goToLinks()">Devam Et</button>
-            <button onclick="goToAbout()">Hakkında</button>
+            <button onclick="showForm('login')">Giriş Yap</button>
+            <button onclick="showForm('register')">Hesap Aç</button>
         </div>
     </div>
 
-    <!-- Hakkında sayfası -->
-    <div class="about-page" id="aboutPage">
-        <h2>Banlanmak tarafından oluşturuldu</h2>
-        <p>Banlanmak'ın sitesi hakkında bazı bilgiler burada yer alacak.</p>
-        <p>Bu siteyi Banlanmak tarafından oluşturulmuştur.</p>
-        <button onclick="goBack()">Geri</button>
+    <div class="container" id="loginForm" style="display: none;">
+        <h1>Giriş Yap</h1>
+        <form>
+            <input type="text" id="loginUsername" placeholder="Kullanıcı Adı" required>
+            <input type="password" id="loginPassword" placeholder="Şifre" required>
+            <button type="button" onclick="login()">Giriş Yap</button>
+        </form>
+        <button class="back-button" onclick="goBack()">Geri</button>
     </div>
 
-    <!-- Linkler sayfası -->
-    <div class="links-page" id="linksPage">
-        <h2>Bağlantılar</h2>
-        <p>Siteyle ilgili bağlantılar:</p>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">YouTube Linki</a>
-        <button onclick="goBackToHome()">Ana Sayfaya Dön</button>
+    <div class="container" id="registerForm" style="display: none;">
+        <h1>Hesap Aç</h1>
+        <form>
+            <input type="text" id="registerUsername" placeholder="Kullanıcı Adı" required>
+            <input type="password" id="registerPassword" placeholder="Şifre" required>
+            <button type="button" onclick="register()">Hesap Oluştur</button>
+        </form>
+        <button class="back-button" onclick="goBack()">Geri</button>
     </div>
 
     <script>
-        function goToAbout() {
-            document.getElementById('aboutPage').classList.add('active');
-            document.querySelector('.container').classList.add('active');
+        function showForm(formId) {
+            document.getElementById('mainContainer').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById(formId + 'Form').style.display = 'block';
         }
 
         function goBack() {
-            document.getElementById('aboutPage').classList.remove('active');
-            document.querySelector('.container').classList.remove('active');
+            document.getElementById('mainContainer').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
         }
 
-        function goToLinks() {
-            document.getElementById('linksPage').classList.add('active');
-            document.querySelector('.container').classList.add('active');
+        function register() {
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            if (username && password) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                alert('Hesap oluşturuldu! Şimdi giriş yapabilirsiniz.');
+                showForm('login');
+            } else {
+                alert('Lütfen tüm alanları doldurun.');
+            }
         }
 
-        function goBackToHome() {
-            document.getElementById('linksPage').classList.remove('active');
-            document.querySelector('.container').classList.remove('active');
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+
+            if (username === storedUsername && password === storedPassword) {
+                alert('Başarıyla giriş yaptınız!');
+                window.location.href = "roblox_models.html"; // Kullanıcıyı yönlendirme
+            } else {
+                alert('Hatalı kullanıcı adı veya şifre!');
+            }
         }
     </script>
 </body>
